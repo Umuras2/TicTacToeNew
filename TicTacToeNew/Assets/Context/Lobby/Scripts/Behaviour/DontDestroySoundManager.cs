@@ -4,9 +4,22 @@ using UnityEngine;
 
 public class DontDestroySoundManager : MonoBehaviour
 {
+    public static DontDestroySoundManager instance;
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
     }
+
+    
+    
 }
