@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 399298477}
   - component: {fileID: 399298476}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CircleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,7 +311,7 @@ GameObject:
   - component: {fileID: 441360669}
   - component: {fileID: 441360668}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CrossText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 490044256}
   - component: {fileID: 490044255}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CrossText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1085,7 +1085,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 698755083}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 744441314}
+        m_TargetAssemblyTypeName: PlayerPanelManagerView, Assembly-CSharp
+        m_MethodName: OnCheck
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &698755083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1183,10 +1195,10 @@ MonoBehaviour:
   statusLabel: {fileID: 967827998}
   checkButton: {fileID: 698755082}
   playButton: {fileID: 1205449188}
-  playerOneCrossButton: {fileID: 1738990684}
-  playerOneCircleButton: {fileID: 1584488955}
-  playerTwoCrossButton: {fileID: 1553572872}
-  playerTwoCircleButton: {fileID: 992281912}
+  playerOneCrossButton: {fileID: 1738990686}
+  playerOneCircleButton: {fileID: 1584488957}
+  playerTwoCrossButton: {fileID: 1553572874}
+  playerTwoCircleButton: {fileID: 992281914}
 --- !u!1 &760840622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,7 +1693,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: -205}
-  m_SizeDelta: {x: 300, y: 50}
+  m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &967827998
 MonoBehaviour:
@@ -1736,9 +1748,9 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1863,7 +1875,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 992281915}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 744441314}
+        m_TargetAssemblyTypeName: PlayerPanelManagerView, Assembly-CSharp
+        m_MethodName: OnPlayerTwoDetect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 399298476}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &992281915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,7 +2516,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1205449189}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 744441314}
+        m_TargetAssemblyTypeName: PlayerPanelManagerView, Assembly-CSharp
+        m_MethodName: OnPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1205449189
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2665,7 +2701,7 @@ GameObject:
   - component: {fileID: 1286093729}
   - component: {fileID: 1286093728}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: CircleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2989,7 +3025,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -3008,7 +3044,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1553572875}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 744441314}
+        m_TargetAssemblyTypeName: PlayerPanelManagerView, Assembly-CSharp
+        m_MethodName: OnPlayerTwoDetect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 441360668}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1553572875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3130,7 +3178,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1584488958}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 744441314}
+        m_TargetAssemblyTypeName: PlayerPanelManagerView, Assembly-CSharp
+        m_MethodName: OnPlayerOneDetect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1286093728}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1584488958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3252,7 +3312,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1738990687}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 744441314}
+        m_TargetAssemblyTypeName: PlayerPanelManagerView, Assembly-CSharp
+        m_MethodName: OnPlayerOneDetect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 490044255}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1738990687
 MonoBehaviour:
   m_ObjectHideFlags: 0

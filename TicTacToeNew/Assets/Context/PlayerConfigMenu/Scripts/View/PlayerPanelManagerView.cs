@@ -15,10 +15,30 @@ public class PlayerPanelManagerView : EventView
     public Button checkButton;
     public Button playButton;
 
-    public GameObject playerOneCrossButton;
-    public GameObject playerOneCircleButton;
+    public Button playerOneCrossButton;
+    public Button playerOneCircleButton;
 
-    public GameObject playerTwoCrossButton;
-    public GameObject playerTwoCircleButton;
+    public Button playerTwoCrossButton;
+    public Button playerTwoCircleButton;
 
+
+    public void OnPlay()
+    {
+        dispatcher.Dispatch(PlayerPanelManagerEvent.Play);
+    }
+
+    public void OnCheck()
+    {
+        dispatcher.Dispatch(PlayerPanelManagerEvent.Check);
+    }
+
+    public void OnPlayerOneDetect(TextMeshProUGUI Text)
+    {
+        dispatcher.Dispatch(PlayerPanelManagerEvent.PlayerOneDetect, Text.text);
+    }
+
+    public void OnPlayerTwoDetect(TextMeshProUGUI Text)
+    {
+        dispatcher.Dispatch(PlayerPanelManagerEvent.PlayerTwoDetect, Text.text);
+    }
 }

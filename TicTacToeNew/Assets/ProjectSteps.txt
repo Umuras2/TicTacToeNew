@@ -1,0 +1,4 @@
+1- Main menu olacak, orada " Play " ve " Exit " buttonlari olacak
+2- "Play" tiklandiginda, player1 ve player2 icin isim girme paneli acilacak, ayrica bu panelde her bir oyuncu, (X) veya (O) secebilecek. Her iki oyuncu da (X) veya her iki oyuncu da (O) secebilir olacak. Ikisi aynisini sectiginde, random olarak atama islemi yapilacak. Player1 ve 2 nin isimlari ayni olamaz. Ayni oldugunda uyari verecek. Butun sartlar saglanmadan play buttonuna basilamayacak.
+3- Oyun icerisinde p1 ve p2 sirali olarak oynayacak, arayuzde kimin X ve kimin O oldugu gosterilecek, puani gosterilecek
+4- Oyun bittiginde kazanan ekrana yazdirilacak ve ana ekrana geri donecek.

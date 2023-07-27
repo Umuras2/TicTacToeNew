@@ -16,6 +16,9 @@ public class PlayerConfigMenuContext : MVCSContext
 
 	protected override void mapBindings()
 	{
-		
+
+		injectionBinder.Bind<IPlayerModel>().To<PlayerModel>();
+
+		mediationBinder.Bind<PlayerPanelManagerView>().To<PlayerPanelManagerMediator>();
 	}
 }
