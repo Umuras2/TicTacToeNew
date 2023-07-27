@@ -24,6 +24,14 @@ public class PlayerPanelManagerMediator : EventMediator
 
     private List<string> playerCharacterList = new List<string>();
 
+    private Image playerOneCrossButtonImage;
+
+    private Image playerTwoCrossButtonImage;
+
+    private Image playerOneCircleButtonImage;
+
+    private Image playerTwoCircleButtonImage;
+
     public override void OnRegister()
     {
         view.dispatcher.AddListener(PlayerPanelManagerEvent.Check, OnCheck);
@@ -35,6 +43,12 @@ public class PlayerPanelManagerMediator : EventMediator
 
         playerCharacterList.Add("X");
         playerCharacterList.Add("O");
+
+        playerOneCrossButtonImage = view.playerOneCrossButton.gameObject.GetComponent<Image>();
+        playerTwoCrossButtonImage = view.playerTwoCrossButton.gameObject.GetComponent<Image>();
+
+        playerOneCircleButtonImage = view.playerOneCircleButton.gameObject.GetComponent<Image>();
+        playerTwoCircleButtonImage = view.playerTwoCircleButton.gameObject.GetComponent<Image>();
     }
 
     private void OnCheck()
@@ -89,11 +103,84 @@ public class PlayerPanelManagerMediator : EventMediator
     public void OnPlayerOneCrossOrCircleButtonDetect(IEvent evt)
     {
         playerModel.playerOneCrossOrCircle = evt.data.ToString();
+        if (playerModel.playerOneCrossOrCircle == PlayerEvent.X.ToString())
+        {
+            if (playerOneCrossButtonImage.color != Color.red)
+            {
+                playerOneCrossButtonImage.color = Color.red;
+
+                if (playerOneCircleButtonImage.color == Color.red)
+                {
+                    playerOneCircleButtonImage.color = Color.white;
+                }
+            }
+            else
+            {
+                playerOneCrossButtonImage.color = Color.white;
+                playerModel.playerOneCrossOrCircle = string.Empty;
+            }
+            
+        }
+        else if (playerModel.playerOneCrossOrCircle == PlayerEvent.O.ToString())
+        {
+            if (playerOneCircleButtonImage.color != Color.red)
+            {
+                playerOneCircleButtonImage.color = Color.red;
+
+                if (playerOneCrossButtonImage.color == Color.red)
+                {
+                    playerOneCrossButtonImage.color = Color.white;
+                }
+            }
+            else
+            {
+                playerOneCircleButtonImage.color = Color.white;
+                playerModel.playerOneCrossOrCircle = string.Empty;
+            }
+        }
+        
+            
+        
     }
 
     public void OnPlayerTwoCrossOrCircleButtonDetect(IEvent evt)
     {
         playerModel.playerTwoCrossOrCircle = evt.data.ToString();
+        if (playerModel.playerTwoCrossOrCircle == PlayerEvent.X.ToString())
+        {
+            if (playerTwoCrossButtonImage.color != Color.red)
+            {
+                playerTwoCrossButtonImage.color = Color.red;
+
+                if (playerTwoCircleButtonImage.color == Color.red)
+                {
+                    playerTwoCircleButtonImage.color = Color.white;
+                }
+            }
+            else
+            {
+                playerTwoCrossButtonImage.color = Color.white;
+                playerModel.playerTwoCrossOrCircle = string.Empty;
+            }
+
+        }
+        else if (playerModel.playerTwoCrossOrCircle == PlayerEvent.O.ToString())
+        {
+            if (playerTwoCircleButtonImage.color != Color.red)
+            {
+                playerTwoCircleButtonImage.color = Color.red;
+
+                if (playerTwoCrossButtonImage.color == Color.red)
+                {
+                    playerTwoCrossButtonImage.color = Color.white;
+                }
+            }
+            else
+            {
+                playerTwoCircleButtonImage.color = Color.white;
+                playerModel.playerTwoCrossOrCircle = string.Empty;
+            }
+        }
     }
 
     public override void OnRemove()
