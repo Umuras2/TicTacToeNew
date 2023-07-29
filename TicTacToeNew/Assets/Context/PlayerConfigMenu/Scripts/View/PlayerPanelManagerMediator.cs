@@ -60,12 +60,10 @@ public class PlayerPanelManagerMediator : EventMediator
             view.playerOneInputField.text = "";
             view.playerTwoInputField.text = "";
         }
-        else if (string.IsNullOrEmpty(playerModel.playerOneCrossOrCircle) && string.IsNullOrEmpty(playerModel.playerTwoCrossOrCircle))
+        else if (string.IsNullOrEmpty(playerModel.playerOneCrossOrCircle) || string.IsNullOrEmpty(playerModel.playerTwoCrossOrCircle))
         {
             view.statusLabel.text = "You must choose X or O";
             view.playButton.interactable = false;
-            view.playerOneInputField.text = "";
-            view.playerTwoInputField.text = "";
         }
         else
         {
@@ -98,6 +96,28 @@ public class PlayerPanelManagerMediator : EventMediator
         playerModel.playerOneCrossOrCircle = playerCharacterList[playerOneRandom];
         playerModel.playerTwoCrossOrCircle = playerCharacterList[playerTwoRandom];
         Debug.Log("Player 1 " + playerModel.playerOneCrossOrCircle + " Player 2 " + playerModel.playerTwoCrossOrCircle);
+
+        if (playerModel.playerOneCrossOrCircle == PlayerEvent.X.ToString())
+        {
+            playerOneCrossButtonImage.color = Color.red;
+            playerOneCircleButtonImage.color = Color.white;
+        }
+        else
+        {
+            playerOneCrossButtonImage.color = Color.white;
+            playerOneCircleButtonImage.color = Color.red;
+        }
+
+        if (playerModel.playerTwoCrossOrCircle == PlayerEvent.X.ToString())
+        {
+            playerTwoCrossButtonImage.color = Color.red;
+            playerTwoCircleButtonImage.color = Color.white;
+        }
+        else
+        {
+            playerTwoCrossButtonImage.color = Color.white;
+            playerTwoCircleButtonImage.color = Color.red;
+        }
     }
 
     public void OnPlayerOneCrossOrCircleButtonDetect(IEvent evt)
