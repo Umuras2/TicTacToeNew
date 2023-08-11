@@ -1199,6 +1199,7 @@ MonoBehaviour:
   playerOneCircleButton: {fileID: 1584488957}
   playerTwoCrossButton: {fileID: 1553572874}
   playerTwoCircleButton: {fileID: 992281914}
+  background: {fileID: 1256979586}
 --- !u!1 &760840622
 GameObject:
   m_ObjectHideFlags: 0

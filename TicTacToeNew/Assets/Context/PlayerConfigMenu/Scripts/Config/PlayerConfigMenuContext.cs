@@ -17,8 +17,11 @@ public class PlayerConfigMenuContext : MVCSContext
 	protected override void mapBindings()
 	{
 
-		injectionBinder.Bind<IPlayerModel>().To<PlayerModel>();
+		injectionBinder.Bind<IPlayerModel>().To<PlayerModel>().ToSingleton();
+		injectionBinder.Bind<IGameModel>().To<GameModel>().ToSingleton();
 
 		mediationBinder.Bind<PlayerPanelManagerView>().To<PlayerPanelManagerMediator>();
+		mediationBinder.Bind<GameCellView>().To<GameCellMediator>();
+		mediationBinder.Bind<GamePanelView>().To<GamePanelMediator>();
 	}
 }

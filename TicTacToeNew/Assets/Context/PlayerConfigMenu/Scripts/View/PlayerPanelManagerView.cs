@@ -21,6 +21,8 @@ public class PlayerPanelManagerView : EventView
     public Button playerTwoCrossButton;
     public Button playerTwoCircleButton;
 
+    public Image background;
+
 
     public void OnPlay()
     {

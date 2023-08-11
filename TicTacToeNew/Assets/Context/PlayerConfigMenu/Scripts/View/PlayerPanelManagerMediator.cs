@@ -1,10 +1,14 @@
+using RSG;
 using strange.extensions.dispatcher.eventdispatcher.api;
 using strange.extensions.mediation.impl;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.EventSystems;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -31,6 +35,9 @@ public class PlayerPanelManagerMediator : EventMediator
     private Image playerOneCircleButtonImage;
 
     private Image playerTwoCircleButtonImage;
+
+    [SerializeField]
+    private AssetReference prefabReferance;
 
     public override void OnRegister()
     {
@@ -80,7 +87,36 @@ public class PlayerPanelManagerMediator : EventMediator
 
     private void OnPlay()
     {
-        SceneManager.LoadScene("Game");
+        RunCode();            
+    }
+
+    private void RunCode()
+    {
+        GetGamePanelPrefab().Then(() =>
+        {
+            gameObject.SetActive(false);
+            view.background.gameObject.SetActive(false);
+        });
+    }
+
+    private IPromise GetGamePanelPrefab()
+    {
+        Promise promise = new Promise();
+        AsyncOperationHandle<GameObject> asyncOperationHandle = Addressables.InstantiateAsync("GamePanel", gameObject.transform.parent);
+
+        asyncOperationHandle.Completed += handle =>
+        {
+            if (asyncOperationHandle.Status == AsyncOperationStatus.Succeeded)
+            {
+                promise.Resolve();
+            }
+            else
+            {
+                promise.Reject(new Exception());
+            }
+        };
+
+        return promise;
     }
 
     private void ChangeName()
@@ -89,8 +125,8 @@ public class PlayerPanelManagerMediator : EventMediator
         int playerTwoRandom;
         do
         {
-            playerOneRandom = Random.Range(0, 2);
-            playerTwoRandom = Random.Range(0, 2);
+            playerOneRandom = UnityEngine.Random.Range(0, 2);
+            playerTwoRandom = UnityEngine.Random.Range(0, 2);
         } while (playerOneRandom == playerTwoRandom);
 
         playerModel.playerOneCrossOrCircle = playerCharacterList[playerOneRandom];

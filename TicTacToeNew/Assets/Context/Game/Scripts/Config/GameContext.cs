@@ -1,18 +1,29 @@
+using strange.extensions.context.api;
+using strange.extensions.context.impl;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameContext : MonoBehaviour
+public class GameContext : MVCSContext
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public GameContext(MonoBehaviour view) : base(view)
+	{
+	}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public GameContext(MonoBehaviour view, ContextStartupFlags flags) : base(view, flags)
+	{
+	}
+
+	protected override void mapBindings()
+	{
+		injectionBinder.Bind<IPlayerModel>().To<PlayerModel>().ToSingleton();
+		injectionBinder.Bind<IGameModel>().To<GameModel>();
+
+		mediationBinder.Bind<GameCellView>().To<GameCellMediator>();
+		mediationBinder.Bind<GamePanelView>().To<GamePanelMediator>();
+
+
+	}
+
+
 }
