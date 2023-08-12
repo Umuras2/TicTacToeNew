@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.UI;
 
 public enum GamePanelEvent
 {
@@ -47,11 +48,13 @@ public class GamePanelMediator : EventMediator
         playerCharacterList.Add(playerModel.playerTwoCrossOrCircle.ToUpper());
         Sprites();
         view.playerOneTurnLabel.text = "Player's Turn: " + playerModel.playerOneName;
+        gameModel.p1Turn = true;
     }
 
     private IPromise CallSpriteAsset()
     {
         Promise promise = new Promise();
+        
         AsyncOperationHandle<Sprite> handle = Addressables.LoadAssetAsync<Sprite>(playerCharacterList[index++]);
 
         handle.Completed += asynchandle =>
@@ -59,16 +62,16 @@ public class GamePanelMediator : EventMediator
             if (asynchandle.Status == AsyncOperationStatus.Succeeded)
             {
                 Sprite sprite = asynchandle.Result;
-                if (sprite.name == "X")
+                int p = index - 1;
+                if (p == 0)
                 {
-                    view.playerOneCharacterImage.sprite = sprite;
-                    gameModel.PlayerOneCharacter.sprite = sprite;
+                    FillPlayerOneCharacter(sprite);
                 }
                 else
                 {
-                    view.playerTwoCharacterImage.sprite = sprite;
-                    gameModel.PlayerTwoCharacter.sprite = sprite;
+                    FillPlayerTwoCharacter(sprite);
                 }
+               
                 promise.Resolve();
             }
             else
@@ -92,8 +95,37 @@ public class GamePanelMediator : EventMediator
 
         Promise.Sequence(list).Then(() =>
         {
+            index = 0;
             Debug.Log("All Sprites loaded.");
         });
+    }
+
+    private void FillPlayerOneCharacter(Sprite sprite)
+    {
+        if (playerModel.playerOneCrossOrCircle == playerCharacterList[0])
+        {
+            view.playerOneCharacterImage.sprite = sprite;
+            gameModel.PlayerOneCharacter = sprite;
+        }
+        else if (playerModel.playerOneCrossOrCircle == playerCharacterList[1])
+        {
+            view.playerOneCharacterImage.sprite = sprite;
+            gameModel.PlayerOneCharacter = sprite;
+        }
+    }
+
+    private void FillPlayerTwoCharacter(Sprite sprite)
+    {
+        if (playerModel.playerTwoCrossOrCircle == playerCharacterList[0])
+        {
+            view.playerTwoCharacterImage.sprite = sprite;
+            gameModel.PlayerTwoCharacter = sprite;
+        }
+        else if (playerModel.playerTwoCrossOrCircle == playerCharacterList[1])
+        {
+            view.playerTwoCharacterImage.sprite = sprite;
+            gameModel.PlayerTwoCharacter = sprite;
+        }
     }
 
     private void OnReset()
