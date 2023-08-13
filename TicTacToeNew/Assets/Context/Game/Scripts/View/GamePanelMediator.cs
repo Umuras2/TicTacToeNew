@@ -1,4 +1,5 @@
 using RSG;
+using strange.extensions.dispatcher.eventdispatcher.api;
 using strange.extensions.mediation.impl;
 using System;
 using System.Collections;
@@ -7,11 +8,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum GamePanelEvent
 {
-    Reset
+    Reset,
+    GameFinished
 }
 
 public class GamePanelMediator : EventMediator
@@ -35,6 +38,7 @@ public class GamePanelMediator : EventMediator
     public override void OnRegister()
     {
         view.dispatcher.AddListener(GamePanelEvent.Reset, OnReset);
+        dispatcher.AddListener(GamePanelEvent.GameFinished, OnGameFinished);
 
 
         Load();
@@ -130,7 +134,20 @@ public class GamePanelMediator : EventMediator
 
     private void OnReset()
     {
+        SceneManager.LoadScene("Launcher");
+    }
 
+    private void OnGameFinished(IEvent evt)
+    {
+        view.winnerPanel.SetActive(true);
+        if (gameModel.isGameDraw)
+        {
+            view.playerWinnerLabel.text = evt.data as string;
+        }
+        else
+        {
+            view.playerWinnerLabel.text = "Winner is " + evt.data as string + " :D";
+        }
     }
 
     public override void OnRemove()

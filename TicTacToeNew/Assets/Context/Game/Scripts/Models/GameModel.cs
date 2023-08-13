@@ -12,5 +12,7 @@ public class GameModel : IGameModel
 
     public bool p2Turn { get; set; }
 
-    public Dictionary<string, GameVo> GamecellMap { get; set; }
+    public Dictionary<Vector2, GameVo> GamecellMap { get; set; }
+
+    public bool isGameDraw { get; set; }
 }

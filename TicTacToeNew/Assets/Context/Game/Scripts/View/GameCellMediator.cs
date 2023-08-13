@@ -44,7 +44,9 @@ public class GameCellMediator : EventMediator
                 gameModel.p2Turn = true;
                 gamePanelView.playerOneTurnLabel.text = "Player's Turn: ";
                 gamePanelView.playerTwoTurnLabel.text = "Player's Turn: " + playerModel.playerTwoName;
-                gameModel.GamecellMap[cell.name].playerCharacter = playerModel.playerOneCrossOrCircle.ToUpper();
+                gameModel.GamecellMap[GetCellValue(cell)].playerCharacter = playerModel.playerOneCrossOrCircle.ToUpper();
+                ControlGameFinish();
+                IsGameDrawControl();
             }
             else if (gameModel.p2Turn)
             {
@@ -54,24 +56,143 @@ public class GameCellMediator : EventMediator
                 gameModel.p2Turn = false;
                 gamePanelView.playerOneTurnLabel.text = "Player's Turn: " + playerModel.playerOneName;
                 gamePanelView.playerTwoTurnLabel.text = "Player's Turn: ";
-                gameModel.GamecellMap[cell.name].playerCharacter = playerModel.playerTwoCrossOrCircle.ToUpper();
+                gameModel.GamecellMap[GetCellValue(cell)].playerCharacter = playerModel.playerTwoCrossOrCircle.ToUpper();
+                ControlGameFinish();
+                IsGameDrawControl();
             }
             
         }
     }
 
-    //private void ControlGameFinish()
-    //{
-    //    foreach (GameVo gameVo in gameModel.GamecellMap.Values)
-    //    {
-            
-    //    }
-    //}
+
+    private void ControlGameFinish()
+    {
+        //1.satýr
+        if (gameModel.GamecellMap[new Vector2(0,0)].playerCharacter == gameModel.GamecellMap[new Vector2(0,1)].playerCharacter)
+        {
+            if (gameModel.GamecellMap[new Vector2(0, 0)].playerCharacter == gameModel.GamecellMap[new Vector2(0, 2)].playerCharacter)
+            {
+                if (gameModel.GamecellMap[new Vector2(0, 0)].playerCharacter == playerModel.playerOneCrossOrCircle)
+                {
+                    DisableClicklableFunctionCells(playerModel.playerOneName);
+                }
+                else
+                {
+                    DisableClicklableFunctionCells(playerModel.playerTwoName);
+                }
+            }
+        }
+        //1.sütun
+        if (gameModel.GamecellMap[new Vector2(0, 0)].playerCharacter == gameModel.GamecellMap[new Vector2(1, 0)].playerCharacter)
+        {
+            if (gameModel.GamecellMap[new Vector2(0, 0)].playerCharacter == gameModel.GamecellMap[new Vector2(2, 0)].playerCharacter)
+            {
+                if (gameModel.GamecellMap[new Vector2(0, 0)].playerCharacter == playerModel.playerOneCrossOrCircle)
+                {
+                    DisableClicklableFunctionCells(playerModel.playerOneName);
+                }
+                else
+                {
+                    DisableClicklableFunctionCells(playerModel.playerTwoName);
+                }
+            }
+        }
+        //2.satýr
+        if (gameModel.GamecellMap[new Vector2(1, 0)].playerCharacter == gameModel.GamecellMap[new Vector2(1, 1)].playerCharacter)
+        {
+            if (gameModel.GamecellMap[new Vector2(1, 0)].playerCharacter == gameModel.GamecellMap[new Vector2(1, 2)].playerCharacter)
+            {
+                if (gameModel.GamecellMap[new Vector2(1, 0)].playerCharacter == playerModel.playerOneCrossOrCircle)
+                {
+                    DisableClicklableFunctionCells(playerModel.playerOneName);
+                }
+                else
+                {
+                    DisableClicklableFunctionCells(playerModel.playerTwoName);
+                }
+            }
+        }
+        //2.sütun
+        if (gameModel.GamecellMap[new Vector2(0, 1)].playerCharacter == gameModel.GamecellMap[new Vector2(1, 1)].playerCharacter)
+        {
+            if (gameModel.GamecellMap[new Vector2(0, 1)].playerCharacter == gameModel.GamecellMap[new Vector2(2, 1)].playerCharacter)
+            {
+                if (gameModel.GamecellMap[new Vector2(0, 1)].playerCharacter == playerModel.playerOneCrossOrCircle)
+                {
+                    DisableClicklableFunctionCells(playerModel.playerOneName);
+                }
+                else
+                {
+                    DisableClicklableFunctionCells(playerModel.playerTwoName);
+                }
+            }
+        }
+        //3.satýr
+        if (gameModel.GamecellMap[new Vector2(2, 0)].playerCharacter == gameModel.GamecellMap[new Vector2(2, 1)].playerCharacter)
+        {
+            if (gameModel.GamecellMap[new Vector2(2, 0)].playerCharacter == gameModel.GamecellMap[new Vector2(2, 2)].playerCharacter)
+            {
+                if (gameModel.GamecellMap[new Vector2(2, 0)].playerCharacter == playerModel.playerOneCrossOrCircle)
+                {
+                    DisableClicklableFunctionCells(playerModel.playerOneName);
+                }
+                else
+                {
+                    DisableClicklableFunctionCells(playerModel.playerTwoName);
+                }
+            }
+        }
+        //3.sütun
+        if (gameModel.GamecellMap[new Vector2(0, 2)].playerCharacter == gameModel.GamecellMap[new Vector2(1, 2)].playerCharacter)
+        {
+            if (gameModel.GamecellMap[new Vector2(0, 2)].playerCharacter == gameModel.GamecellMap[new Vector2(2, 2)].playerCharacter)
+            {
+                if (gameModel.GamecellMap[new Vector2(0, 2)].playerCharacter == playerModel.playerOneCrossOrCircle)
+                {
+                    DisableClicklableFunctionCells(playerModel.playerOneName);
+                }
+                else
+                {
+                    DisableClicklableFunctionCells(playerModel.playerTwoName);
+                }
+            }
+        }
+        //Çapraz
+        if (gameModel.GamecellMap[new Vector2(0, 0)].playerCharacter == gameModel.GamecellMap[new Vector2(1, 1)].playerCharacter)
+        {
+            if (gameModel.GamecellMap[new Vector2(0, 0)].playerCharacter == gameModel.GamecellMap[new Vector2(2, 2)].playerCharacter)
+            {
+                if (gameModel.GamecellMap[new Vector2(0, 0)].playerCharacter == playerModel.playerOneCrossOrCircle)
+                {
+                    DisableClicklableFunctionCells(playerModel.playerOneName);
+                }
+                else
+                {
+                    DisableClicklableFunctionCells(playerModel.playerTwoName);
+                }
+            }
+        }
+        //Çapraz
+        if (gameModel.GamecellMap[new Vector2(0, 2)].playerCharacter == gameModel.GamecellMap[new Vector2(1, 1)].playerCharacter)
+        {
+            if (gameModel.GamecellMap[new Vector2(0, 2)].playerCharacter == gameModel.GamecellMap[new Vector2(2, 0)].playerCharacter)
+            {
+                if (gameModel.GamecellMap[new Vector2(0, 2)].playerCharacter == playerModel.playerOneCrossOrCircle)
+                {
+                    DisableClicklableFunctionCells(playerModel.playerOneName);
+                }
+                else
+                {
+                    DisableClicklableFunctionCells(playerModel.playerTwoName);
+                }
+            }
+        }
+    }
 
     private void FillGameCellMap()
     {
-        gameModel.GamecellMap = new Dictionary<string, GameVo>();
-
+        gameModel.GamecellMap = new Dictionary<Vector2, GameVo>();
+        int counter = 0;
         foreach (Image cell in view.gamecells)
         {
             string[] vectorValues = cell.name.Split(",");
@@ -80,7 +201,52 @@ public class GameCellMediator : EventMediator
             int x = int.Parse(valueX);
             int y = int.Parse(valueY);
             GameVo gameVo = new GameVo();
-            gameModel.GamecellMap.Add(cell.gameObject.name, gameVo);
+            gameVo.playerCharacter = "m" + counter;
+            counter++;
+            gameModel.GamecellMap.Add(new Vector2(x,y), gameVo);
+        }
+    }
+
+    private Vector2 GetCellValue(Image cell)
+    {
+        string[] vectorValues = cell.name.Split(",");
+        string valueX = vectorValues[0];
+        string valueY = vectorValues[1];
+        int x = int.Parse(valueX);
+        int y = int.Parse(valueY);
+        return new Vector2(x, y);
+    }
+
+    private void DisableClicklableFunctionCells(string winnerName)
+    {
+        foreach (Image cells in view.gamecells)
+        {
+            cells.gameObject.GetComponent<Button>().interactable = false;
+            cells.raycastTarget = false;
+        }
+        dispatcher.Dispatch(GamePanelEvent.GameFinished, winnerName);
+    }
+
+    private void IsGameDrawControl()
+    {
+        
+        foreach (GameVo gameVo in gameModel.GamecellMap.Values)
+        {
+            if (gameVo.playerCharacter == "X" || gameVo.playerCharacter == "O")
+            {
+                gameModel.isGameDraw = true;
+                continue;
+            }
+            else
+            {
+                gameModel.isGameDraw = false;
+                break;
+            }
+        }
+
+        if (gameModel.isGameDraw)
+        {
+            dispatcher.Dispatch(GamePanelEvent.GameFinished, "Game is DRAWWWW!!!!!!");
         }
     }
 
