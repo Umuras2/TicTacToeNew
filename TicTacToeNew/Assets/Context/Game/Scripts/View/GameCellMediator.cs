@@ -23,6 +23,8 @@ public class GameCellMediator : EventMediator
     [Inject]
     public IPlayerModel playerModel { get; set; }
 
+    private bool isHaveWinner;
+
     public override void OnRegister()
     {
         view.dispatcher.AddListener(GameCellEvents.ClickCell, OnClickCell);
@@ -46,7 +48,10 @@ public class GameCellMediator : EventMediator
                 gamePanelView.playerTwoTurnLabel.text = "Player's Turn: " + playerModel.playerTwoName;
                 gameModel.GamecellMap[GetCellValue(cell)].playerCharacter = playerModel.playerOneCrossOrCircle.ToUpper();
                 ControlGameFinish();
-                IsGameDrawControl();
+                if (!isHaveWinner)
+                {
+                    IsGameDrawControl();
+                }
             }
             else if (gameModel.p2Turn)
             {
@@ -58,7 +63,11 @@ public class GameCellMediator : EventMediator
                 gamePanelView.playerTwoTurnLabel.text = "Player's Turn: ";
                 gameModel.GamecellMap[GetCellValue(cell)].playerCharacter = playerModel.playerTwoCrossOrCircle.ToUpper();
                 ControlGameFinish();
-                IsGameDrawControl();
+                if (!isHaveWinner)
+                {
+                    IsGameDrawControl();
+                }
+                
             }
             
         }
@@ -74,10 +83,12 @@ public class GameCellMediator : EventMediator
             {
                 if (gameModel.GamecellMap[new Vector2(0, 0)].playerCharacter == playerModel.playerOneCrossOrCircle)
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerOneName);
                 }
                 else
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerTwoName);
                 }
             }
@@ -89,10 +100,12 @@ public class GameCellMediator : EventMediator
             {
                 if (gameModel.GamecellMap[new Vector2(0, 0)].playerCharacter == playerModel.playerOneCrossOrCircle)
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerOneName);
                 }
                 else
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerTwoName);
                 }
             }
@@ -104,10 +117,12 @@ public class GameCellMediator : EventMediator
             {
                 if (gameModel.GamecellMap[new Vector2(1, 0)].playerCharacter == playerModel.playerOneCrossOrCircle)
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerOneName);
                 }
                 else
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerTwoName);
                 }
             }
@@ -119,10 +134,12 @@ public class GameCellMediator : EventMediator
             {
                 if (gameModel.GamecellMap[new Vector2(0, 1)].playerCharacter == playerModel.playerOneCrossOrCircle)
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerOneName);
                 }
                 else
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerTwoName);
                 }
             }
@@ -134,10 +151,12 @@ public class GameCellMediator : EventMediator
             {
                 if (gameModel.GamecellMap[new Vector2(2, 0)].playerCharacter == playerModel.playerOneCrossOrCircle)
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerOneName);
                 }
                 else
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerTwoName);
                 }
             }
@@ -149,10 +168,12 @@ public class GameCellMediator : EventMediator
             {
                 if (gameModel.GamecellMap[new Vector2(0, 2)].playerCharacter == playerModel.playerOneCrossOrCircle)
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerOneName);
                 }
                 else
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerTwoName);
                 }
             }
@@ -164,10 +185,12 @@ public class GameCellMediator : EventMediator
             {
                 if (gameModel.GamecellMap[new Vector2(0, 0)].playerCharacter == playerModel.playerOneCrossOrCircle)
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerOneName);
                 }
                 else
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerTwoName);
                 }
             }
@@ -179,10 +202,12 @@ public class GameCellMediator : EventMediator
             {
                 if (gameModel.GamecellMap[new Vector2(0, 2)].playerCharacter == playerModel.playerOneCrossOrCircle)
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerOneName);
                 }
                 else
                 {
+                    isHaveWinner = true;
                     DisableClicklableFunctionCells(playerModel.playerTwoName);
                 }
             }
